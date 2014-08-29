@@ -283,7 +283,9 @@ module CollectiveIdea #:nodoc:
             else
               self.acts_as_geocodable_options[:address].each do |attribute,method|
                 if self.respond_to?("#{method}=") && (self.send(method).blank? || force)
-                  self.send "#{method}=", self.geocode.send(attribute)
+                  if !(geocod_attr = self.geocode.send(attribute)).blank?
+                    self.send "#{method}=", geocod_attr
+                  end
                 end
               end
             end
