@@ -7,7 +7,7 @@ module CollectiveIdea #:nodoc:
         # otherwise people would complain that it doesn't work
         Graticule::Location.new(:locality => 'localhost')
       else
-        Graticule.service(:host_ip).new.locate(request.remote_ip)
+        Graticule.service(:free_geo_ip).new.locate(request.remote_ip)
       end
     rescue Graticule::Error => e
       logger.warn "An error occurred while looking up the location of '#{request.remote_ip}': #{e.message}"
