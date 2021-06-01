@@ -131,7 +131,7 @@ module CollectiveIdea #:nodoc:
           case location
           when Geocode then location
           when InstanceMethods then location.geocode
-          when String, Fixnum then Geocode.find_or_create_by_query(location)
+          when String, Integer then Geocode.find_or_create_by_query(location)
           end
         end
         
